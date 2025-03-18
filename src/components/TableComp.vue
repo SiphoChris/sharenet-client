@@ -9,31 +9,31 @@
             @click="sortTable('fullName')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Name <PrSortAlt /></p>
+            <p class="text-sm font-normal leading-none text-slate-300"><span>Name</span><SortIcon /></p>
           </th>
           <th
             @click="sortTable('price')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Price <PrSortAlt /></p>
+            <p class="text-sm font-normal leading-none text-slate-300"><span>Price</span><SortIcon /></p>
           </th>
           <th
             @click="sortTable('move')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer whitespace-nowrap"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Move <PrSortAlt /></p>
+            <p class="text-sm font-normal leading-none text-slate-300"><span>Move</span><SortIcon /></p>
           </th>
           <th
             @click="sortTable('pmove')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer whitespace-nowrap"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">% Move <PrSortAlt /></p>
+            <p class="text-sm font-normal leading-none text-slate-300"><span>% Move</span><SortIcon /></p>
           </th>
           <th
             @click="sortTable('datetime')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Time <PrSortAlt /></p>
+            <p class="text-sm font-normal leading-none text-slate-300"><span>Time</span><SortIcon /></p>
           </th>
         </tr>
       </thead>
@@ -65,13 +65,11 @@
 <script>
 import { defineComponent, computed } from 'vue'
 import { usePriceStore } from '../stores/index'
-import { PrSortAlt } from 'oh-vue-icons/icons'
+import SortIcon from './SortIcon.vue'
 
 export default defineComponent({
   name: 'DataTable',
-  components: {
-    PrSortAlt,
-  },
+  components: { SortIcon },
   props: {
     data: {
       type: Array,

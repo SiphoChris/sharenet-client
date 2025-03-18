@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="mx-auto py-4 bg-black text-primary-50">
+    <div class="mx-auto py-8 bg-black text-primary-50">
       <ul class="space-y-16">
         <li class="flex justify-evenly items-center">
           <ul class="space-y-1">

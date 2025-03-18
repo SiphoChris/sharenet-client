@@ -82,3 +82,11 @@ body {
   background-color: var(--text-primary-50);
   font-family: exo, sans-serif;
 }
+
+thead th p {
+  @apply flex items-center justify-between;
+}
+
+tr th {
+  @apply hover:bg-slate-600 transition-colors;
+}
