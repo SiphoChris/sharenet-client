@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-green-vogue-50: #f2f7fd;
+  --color-green-vogue-100: #e4edfa;
+  --color-green-vogue-200: #c4dbf3;
+  --color-green-vogue-300: #8fbdea;
+  --color-green-vogue-400: #549bdc;
+  --color-green-vogue-500: #2e7ec9;
+  --color-green-vogue-600: #1e63ab;
+  --color-green-vogue-700: #1a4f8a;
+  --color-green-vogue-800: #194573;
+  --color-green-vogue-900: #1a3a60;
+  --color-green-vogue-950: #152d4d;
+}
