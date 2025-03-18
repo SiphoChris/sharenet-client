@@ -1,21 +1,84 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-green-vogue-50: #f2f7fd;
-  --color-green-vogue-100: #e4edfa;
-  --color-green-vogue-200: #c4dbf3;
-  --color-green-vogue-300: #8fbdea;
-  --color-green-vogue-400: #549bdc;
-  --color-green-vogue-500: #2e7ec9;
-  --color-green-vogue-600: #1e63ab;
-  --color-green-vogue-700: #1a4f8a;
-  --color-green-vogue-800: #194573;
-  --color-green-vogue-900: #1a3a60;
-  --color-green-vogue-950: #152d4d;
+
+  /* text */
+
+  --text-primary-50: #f2f7fd;
+  --text-primary-100: #e4edfa;
+  --text-primary-200: #c4dbf3;
+  --text-primary-300: #8fbdea;
+  --text-primary-400: #549bdc;
+  --text-primary-500: #2e7ec9;
+  --text-primary-600: #1e63ab;
+  --text-primary-700: #1a4f8a;
+  --text-primary-800: #194573;
+  --text-primary-900: #1a3a60;
+  --text-primary-950: #152d4d;
+
+  /* color */
+
+  --color-primary-50: #f2f7fd;
+  --color-primary-100: #e4edfa;
+  --color-primary-200: #c4dbf3;
+  --color-primary-300: #8fbdea;
+  --color-primary-400: #549bdc;
+  --color-primary-500: #2e7ec9;
+  --color-primary-600: #1e63ab;
+  --color-primary-700: #1a4f8a;
+  --color-primary-800: #194573;
+  --color-primary-900: #1a3a60;
+  --color-primary-950: #152d4d;
+
+  --color-secondary-50: #fff1f1;
+  --color-secondary-100: #fee5e5;
+  --color-secondary-200: #fdced1;
+  --color-secondary-300: #faa7ac;
+  --color-secondary-400: #f77580;
+  --color-secondary-500: #ef485a;
+  --color-secondary-600: #db233f;
+  --color-secondary-700: #b91735;
+  --color-secondary-800: #9b1633;
+  --color-secondary-900: #851631;
+  --color-secondary-950: #4a0716;
 }
 
 @layer components {
   .btn {
-    @apply bg-green-vogue-500 hover:bg-green-vogue-600 text-white font-bold py-2 px-4 rounded;
+    @apply py-2 px-4 rounded-lg text-primary-950 font-bold;
   }
+
+  .btn-primary {
+    @apply bg-primary-400 hover:bg-primary-600 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-400 hover:bg-secondary-600 transition-colors;
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply text-primary-950;
+  }
+
+  a,
+  a:hover,
+  a:active,
+  a:link,
+  a:visited {
+    @apply text-primary-950;
+  }
+}
+
+html,
+body {
+  background-color: var(--text-primary-50);
+  font-family: exo, sans-serif;
 }

@@ -7,7 +7,7 @@
       <div>
         <div v-if="priceData.loading">Loading...</div>
         <div v-if="priceData.error">{{ priceData.error }}</div>
-        <DataTable :data="priceData.data" />
+        <DataTable :data="priceData.spots" />
       </div>
     </section>
   </main>
@@ -23,7 +23,7 @@ export default defineComponent({
   name: 'App',
   components: {
     DataTable,
-    Hero
+    Hero,
   },
   setup() {
     const priceData = usePriceStore()

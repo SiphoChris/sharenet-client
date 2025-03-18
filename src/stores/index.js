@@ -3,9 +3,9 @@ import { fetchPriceData } from '../../utils/index'
 
 export const usePriceStore = defineStore('priceStore', {
   state: () => ({
-    data: [],
+    data: {},
     spots: [],
-    sortBy: 'Price',
+    sortBy: 'price',
     sortDirection: 'desc',
     loading: false,
     error: null,
@@ -39,7 +39,7 @@ export const usePriceStore = defineStore('priceStore', {
       this.sortBy = criteria
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
 
-      this.data.sort((a, b) => {
+      this.spots.sort((a, b) => {
         const valA = a[criteria]
         const valB = b[criteria]
 
