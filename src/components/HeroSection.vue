@@ -1,21 +1,20 @@
 <template>
   <section class="mx-auto pt-12 space-y-8">
-    <h1 class="text-[4.4rem] font-extrabold leading-16 tracking-tighter text-center">
-      lore um ipsum dolor,<br /> sit amet
-      consectetur adipis
+    <h1 class="text-[4.4rem] font-extrabold leading-20 tracking-tighter text-center">
+      A Leading Financial Services <br />
+      and Data Provider
     </h1>
     <p class="text-center text-lg">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-      Nunc accumsan sem ut ligula scelerisque sollicitudin. In hac habit
+      Providing a range of financial services and products. <br/> Serving
+      individuals and companies throughout South Africa and Africa.
     </p>
     <div class="flex justify-center gap-x-4">
-      <button class="btn btn-secondary">Toggle</button>
-      <button class="btn btn-primary">Toggle</button>
+      <button class="btn btn-secondary">Get started</button>
+      <button class="btn btn-primary">Read more</button>
     </div>
     <div class="space-y-4">
       <p class="text-center text-sm">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident nisi in illum minus
-        velit rations
+        See who uses our white label solutions to provide trading and investment services to their clients.
       </p>
       <div class="flex justify-center items-center w-8/12 mx-auto gap-x-4 mb-12">
         <ul v-for="image in partnerImages" :key="image.name">
@@ -27,7 +26,6 @@
 </template>
 
 <script setup>
-
 const partnerImages = [
   { name: 'image1', path: '../../public/images/partner-1.png' },
   { name: 'image2', path: '../../public/images/partner-2.png' },
@@ -39,5 +37,3 @@ const partnerImages = [
   { name: 'image8', path: '../../public/images/partner-8.png' },
 ]
 </script>
-
-

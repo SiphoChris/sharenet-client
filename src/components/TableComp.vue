@@ -65,7 +65,7 @@
 <script>
 import { defineComponent, computed } from 'vue'
 import { usePriceStore } from '../stores/index'
-import SortIcon from './SortIcon.vue'
+import SortIcon from './icons/SortIcon.vue'
 
 export default defineComponent({
   name: 'DataTable',

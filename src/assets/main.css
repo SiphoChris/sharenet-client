@@ -49,11 +49,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary-400 hover:bg-primary-600 transition-colors;
+    @apply bg-primary-400 hover:bg-primary-600 transition-colors text-primary-50; 
   }
 
   .btn-secondary {
-    @apply bg-secondary-400 hover:bg-secondary-600 transition-colors;
+    @apply border border-secondary-400 hover:bg-secondary-100 transition-colors text-secondary-600;
   }
 }
 
@@ -88,5 +88,5 @@ thead th p {
 }
 
 tr th {
-  @apply hover:bg-slate-600 transition-colors;
+  @apply hover:bg-slate-500 transition-colors;
 }

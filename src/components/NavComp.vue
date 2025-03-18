@@ -8,7 +8,7 @@
         <li>
           <RouterLink
             :to="link.path"
-            class="text-primary-900 font-bold hover:text-primary-500 transition-color"
+            class="text-primary-900 text-lg font-bold hover:text-primary-500 transition-color"
             >{{ link.name }}</RouterLink
           >
         </li>
