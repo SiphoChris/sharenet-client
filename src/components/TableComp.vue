@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex flex-col w-full md:max-w-5xl mx-auto h-80 overflow-y-auto overflow-x-hidden text-slate-300 bg-slate-800 shadow-md rounded-lg bg-clip-border scrollbar-custom"
+    class="relative flex flex-col w-full md:max-w-5xl mx-auto h-96 overflow-y-auto overflow-x-hidden text-slate-300 bg-slate-800 shadow-md bg-clip-border scrollbar-custom mb-8"
   >
     <table class="w-full text-left table-auto">
       <thead class="sticky top-0 z-10">
@@ -9,31 +9,31 @@
             @click="sortTable('fullName')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Name</p>
+            <p class="text-sm font-normal leading-none text-slate-300">Name <PrSortAlt /></p>
           </th>
           <th
             @click="sortTable('price')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Price</p>
+            <p class="text-sm font-normal leading-none text-slate-300">Price <PrSortAlt /></p>
           </th>
           <th
             @click="sortTable('move')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer whitespace-nowrap"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Move</p>
+            <p class="text-sm font-normal leading-none text-slate-300">Move <PrSortAlt /></p>
           </th>
           <th
             @click="sortTable('pmove')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer whitespace-nowrap"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">% Move</p>
+            <p class="text-sm font-normal leading-none text-slate-300">% Move <PrSortAlt /></p>
           </th>
           <th
             @click="sortTable('datetime')"
             class="p-4 border-b border-slate-600 bg-slate-700 cursor-pointer"
           >
-            <p class="text-sm font-normal leading-none text-slate-300">Time</p>
+            <p class="text-sm font-normal leading-none text-slate-300">Time <PrSortAlt /></p>
           </th>
         </tr>
       </thead>
@@ -65,9 +65,13 @@
 <script>
 import { defineComponent, computed } from 'vue'
 import { usePriceStore } from '../stores/index'
+import { PrSortAlt } from 'oh-vue-icons/icons'
 
 export default defineComponent({
   name: 'DataTable',
+  components: {
+    PrSortAlt,
+  },
   props: {
     data: {
       type: Array,
@@ -103,6 +107,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
 .scrollbar-custom::-webkit-scrollbar {
   width: 8px;
 }
