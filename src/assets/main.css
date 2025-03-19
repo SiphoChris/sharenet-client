@@ -97,3 +97,7 @@ thead th p {
 tr th {
   @apply hover:bg-slate-500 transition-colors;
 }
+
+li {
+  list-style-position: inside;
+}
