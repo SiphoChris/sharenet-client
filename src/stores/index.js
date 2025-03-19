@@ -5,6 +5,7 @@ export const usePriceStore = defineStore('priceStore', {
   state: () => ({
     data: {},
     spots: [],
+    categories: {},
     sortBy: 'price',
     sortDirection: 'desc',
     loading: false,
@@ -32,24 +33,61 @@ export const usePriceStore = defineStore('priceStore', {
     },
 
     setSpots(newSpots) {
-      this.spots = newSpots
+      this.spots = newSpots || []
+      
+      const grouped = {}
+    
+      newSpots.forEach(spot => {
+        const category = spot.categoryName
+        if (!grouped[category]) {
+          grouped[category] = []
+        }
+        grouped[category].push(spot)
+      })
+    
+      // sort each category by datetime and limit to top 5
+      Object.keys(grouped).forEach(category => {
+        grouped[category] = grouped[category]
+          .sort((a, b) => new Date(b.datetime) - new Date(a.datetime))
+          .slice(0, 5) 
+      })
+    
+      this.categories = grouped
+      console.log('Spots:', this.spots)
+      console.log('Categories:', this.categories)
     },
 
     sortData(criteria) {
       this.sortBy = criteria
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
-
+    
+      // sorting the main spots array
       this.spots.sort((a, b) => {
         const valA = a[criteria]
         const valB = b[criteria]
-
+    
         let comparison = 0
         if (valA < valB) comparison = -1
         if (valA > valB) comparison = 1
         if (this.sortDirection === 'desc') comparison *= -1
-
+    
         return comparison
       })
-    },
+      
+      // sorting each category
+      Object.keys(this.categories).forEach(category => {
+        this.categories[category].sort((a, b) => {
+          const valA = a[criteria]
+          const valB = b[criteria]
+      
+          let comparison = 0
+          if (valA < valB) comparison = -1
+          if (valA > valB) comparison = 1
+          if (this.sortDirection === 'desc') comparison *= -1
+      
+          return comparison
+        })
+      })
+    }
   },
 })
