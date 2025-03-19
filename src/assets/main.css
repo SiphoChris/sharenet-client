@@ -54,6 +54,10 @@
   .btn-secondary {
     @apply border border-secondary-400 hover:bg-secondary-100 transition-colors text-secondary-600;
   }
+
+  .input {
+    @apply py-2 md:py-3 md:px-6 px-3 rounded border border-primary-950 focus:outline-1 focus:outline-secondary-400;
+  }
 }
 
 @layer base {
@@ -73,6 +77,10 @@
   a:link,
   a:visited {
     @apply text-primary-950;
+  }
+
+  ::selection {
+    @apply bg-secondary-400 text-primary-50;
   }
 }
 

@@ -142,6 +142,7 @@ export default defineComponent({
   background: #64748b;
 }
 
+
 .scrollbar-custom {
   scrollbar-width: thin;
   scrollbar-color: #475569 #1e293b;
