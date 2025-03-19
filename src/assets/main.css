@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 @theme {
-
   /* text */
 
   --text-primary-50: #f2f7fd;
@@ -45,11 +44,11 @@
 
 @layer components {
   .btn {
-    @apply py-2 px-4 rounded-lg text-primary-950 font-bold;
+    @apply py-1 md:py-2 md:px-6 px-3 rounded-sm md:rounded-lg text-primary-950 md:font-bold text-sm md:text-lg;
   }
 
   .btn-primary {
-    @apply bg-primary-400 hover:bg-primary-600 transition-colors text-primary-50; 
+    @apply bg-primary-400 hover:bg-primary-600 transition-colors text-primary-50;
   }
 
   .btn-secondary {
