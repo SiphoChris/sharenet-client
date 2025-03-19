@@ -16,7 +16,7 @@
       <p class="text-center text-xs md:text-sm">
         See who uses our white label solutions to provide trading and investment services to their clients.
       </p>
-      <PartnerImages />
+      <PartnerImages/>
     </div>
   </section>
 </template>

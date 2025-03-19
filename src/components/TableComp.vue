@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex flex-col w-full md:max-w-5xl mx-auto h-80 overflow-y-auto text-slate-300 bg-slate-800 shadow-md bg-clip-border scrollbar-custom mb-8"
+    class="relative flex flex-col w-full md:max-w-5xl mx-auto h-80 overflow-y-auto text-slate-300 bg-slate-800 shadow-md bg-clip-border scrollbar-custom mb-18"
   >
     <div class="overflow-x-auto">
       <table class="w-full text-left table-auto min-w-[700px]">

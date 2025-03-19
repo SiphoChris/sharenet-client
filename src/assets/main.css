@@ -90,6 +90,7 @@ body {
   font-family: exo, sans-serif;
 }
 
+
 thead th p {
   @apply flex items-center justify-between;
 }
