@@ -60,7 +60,7 @@ import { RouterLink } from 'vue-router'
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Contact', path: '/contact' },
-  { name: 'See venue', path: '/venues' },
+  { name: 'See Venues', path: '/venues' },
 ]
 
 const isMenuOpen = ref(false)

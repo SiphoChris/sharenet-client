@@ -12,7 +12,7 @@ const center = { lat: -33.8775, lng: 18.6275 }
   :api-key="apiKey"
   :center="center"
   :zoom="15"
-  class="h-96 max-md:w-10/12 w-6/12"
+  class="h-96 max-md:w-10/12 w-5/12"
   >
     <Marker :options="{ position: center }" />
   </GoogleMap>

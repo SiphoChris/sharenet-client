@@ -26,6 +26,9 @@
           placeholder="Type your message..."
           class="input h-24"
         />
+        <button class="btn btn-primary w-full">
+            Send
+        </button>
       </div>
       <div class="md:w-full">
         <ul class="text-sm md:text-md text-primary-950 space-y-1.5">
