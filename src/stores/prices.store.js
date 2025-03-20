@@ -22,7 +22,7 @@ export const usePriceStore = defineStore('priceStore', {
         this.setData(fetchedData)
         this.setSpots(fetchedData.spots)
       } catch (error) {
-        this.error = error
+        this.error = 'Failed to fetch price data. Please try again.'
       } finally {
         this.loading = false
       }

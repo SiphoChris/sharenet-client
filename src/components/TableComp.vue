@@ -82,7 +82,7 @@
 
 <script>
 import { defineComponent, computed } from 'vue'
-import { usePriceStore } from '../stores/index'
+import { usePriceStore } from '../stores/prices.store'
 import SortIcon from './icons/SortIcon.vue'
 
 export default defineComponent({

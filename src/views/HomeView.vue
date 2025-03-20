@@ -6,7 +6,7 @@
     <section>
       <div>
         <Loader class="mx-auto" v-if="priceData.loading" />
-        <div v-else-if="priceData.error" class="text-red-500">{{ priceData.error }}</div>
+        <div v-else-if="priceData.error" class="text-red-500 text-center py-12">{{ priceData.error }}</div>
         <DataTable
           v-else-if="priceData.spots && priceData.spots.length > 0"
           :data="priceData.spots"
@@ -21,7 +21,7 @@
 
 <script>
 import { defineComponent, onMounted } from 'vue'
-import { usePriceStore } from '../stores/index'
+import { usePriceStore } from '../stores/prices.store'
 import Hero from '../components/HeroSection.vue'
 import DataTable from '../components/TableComp.vue'
 import Loader from '../components/LoaderComp.vue'

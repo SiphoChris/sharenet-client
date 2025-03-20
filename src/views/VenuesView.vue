@@ -1,7 +1,10 @@
 <template>
     <div id="about">
-      <h1>This is an vues page</h1>
+      <Grid/>
     </div>
   </template>
+  <script setup>
+  import Grid from '../components/GridLayout.vue';
+  </script>
   
   
