@@ -1,5 +1,5 @@
 <template>
-    <div id="about">
+    <div id="about" class="lg:px-42">
       <Grid/>
     </div>
   </template>
