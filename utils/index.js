@@ -4,9 +4,9 @@ import axios from 'axios'
 
 export const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
-export const apiUrl = import.meta.env.VITE_LOCAL_API_URL
+export const apiUrl = import.meta.env.VITE_API_URL
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_SHARENET_API_URL
 
 
 // Fetch price data

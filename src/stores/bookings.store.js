@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-
-const apiUrl = import.meta.env.VITE_CUSTOM_API_URL;
+import { apiUrl } from '../../utils/index.js';
 
 export const useBookingStore = defineStore('bookings', {
   state: () => ({
