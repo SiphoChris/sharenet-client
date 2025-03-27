@@ -46,6 +46,7 @@
                 <span>Time</span><SortIcon />
               </p>
             </th>
+            <th class="p-4 border-b border-slate-600 bg-slate-700">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -73,6 +74,25 @@
             <td class="p-4 border-b border-slate-700">
               <p class="text-sm text-slate-300">{{ formatDateTime(item.datetime) }}</p>
             </td>
+            <td class="p-4 border-b border-slate-700">
+              <button
+                @click="toggleWatchlist(item.code)"
+                class="px-3 py-1 text-sm rounded-md hover:cursor-pointer"
+                :class="{
+                  'bg-green-600 text-white': isInWatchlist(item.code),
+                  'bg-slate-400 text-primary-900': !isInWatchlist(item.code),
+                }"
+                :disabled="!authStore.isAuthenticated"
+              >
+                {{
+                  !authStore.isAuthenticated
+                    ? 'Login to watch'
+                    : isInWatchlist(item.code)
+                      ? 'Watching'
+                      : 'Watch'
+                }}
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -80,66 +100,145 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, computed } from 'vue'
+<script setup>
+import { computed, ref, onMounted } from 'vue'
 import { usePriceStore } from '../stores/prices.store'
+import { useAuthStore } from '../stores/auth.store'
 import SortIcon from './icons/SortIcon.vue'
+import { apiUrl } from '../../utils/index.js'
 
-export default defineComponent({
-  name: 'DataTable',
-  components: { SortIcon },
-  props: {
-    data: {
-      type: Array,
-      required: true,
-    },
-  },
-  setup(props) {
-    const priceStore = usePriceStore()
-
-    const sortedTableData = computed(() => {
-      if (!Array.isArray(props.data)) {
-        console.error('Data is not an array:', props.data)
-        return []
-      }
-
-      return [...props.data].sort((a, b) => {
-        const valueA = a[priceStore.sortBy]
-        const valueB = b[priceStore.sortBy]
-
-        let comparison = 0
-        if (valueA < valueB) comparison = -1
-        if (valueA > valueB) comparison = 1
-        if (priceStore.sortDirection === 'desc') comparison *= -1
-
-        return comparison
-      })
-    })
-
-    const sortTable = (criteria) => {
-      priceStore.sortData(criteria)
-    }
-
-    const formatDateTime = (datetime) => {
-      if (!datetime) return ''
-      const date = new Date(datetime)
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }
-
-    const formatPrice = (value) => {
-      if (value === null || value === undefined) return ''
-      return Number(value).toFixed(2)
-    }
-
-    const getMoveClass = (value) => {
-      if (value > 0) return 'text-green-400'
-      if (value < 0) return 'text-red-400'
-      return 'text-slate-300'
-    }
-
-    return { sortedTableData, sortTable, formatDateTime, formatPrice, getMoveClass }
+const props = defineProps({
+  data: {
+    type: Array,
+    required: true,
   },
 })
+
+const priceStore = usePriceStore()
+const authStore = useAuthStore()
+const watchlist = ref([])
+const loading = ref(false)
+
+// Fetch watchlist when component mounts and user is authenticated
+onMounted(async () => {
+  if (authStore.isAuthenticated) {
+    await fetchWatchlist()
+  }
+})
+
+
+const fetchWatchlist = async () => {
+  try {
+    loading.value = true
+    const response = await fetch(`${apiUrl}/user/watchlist`, {
+      headers: {
+        Authorization: `Bearer ${authStore.token}`,
+      },
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      watchlist.value = data.data.map((item) => item.share_code)
+    }
+  } catch (error) {
+    console.error('Error fetching watchlist:', error)
+  } finally {
+    loading.value = false
+  }
+}
+
+const toggleWatchlist = async (share_code) => {
+  if (!authStore.isAuthenticated) {
+    return
+  }
+
+  try {
+    if (isInWatchlist(share_code)) {
+      // First we need to get the watchlist_id for this item
+      const response = await fetch(`${apiUrl}/user/watchlist`, {
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        const item = data.data.find(item => item.share_code === share_code)
+        
+        if (item) {
+          await fetch(`${apiUrl}/user/watchlist/item/${item.watchlist_id}`, {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Bearer ${authStore.token}`,
+            },
+          })
+          watchlist.value = watchlist.value.filter((code) => code !== share_code)
+        }
+      }
+    } else {
+      // Add to watchlist
+      const response = await fetch(`${apiUrl}/user/watchlist`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ share_code }),
+      })
+
+      if (response.ok) {
+        watchlist.value.push(share_code)
+      }
+    }
+  } catch (error) {
+    console.error('Error updating watchlist:', error)
+  }
+}
+
+
+const isInWatchlist = (shareCode) => {
+  return watchlist.value.includes(shareCode)
+}
+
+const sortedTableData = computed(() => {
+  if (!Array.isArray(props.data)) {
+    console.error('Data is not an array:', props.data)
+    return []
+  }
+
+  return [...props.data].sort((a, b) => {
+    const valueA = a[priceStore.sortBy]
+    const valueB = b[priceStore.sortBy]
+
+    let comparison = 0
+    if (valueA < valueB) comparison = -1
+    if (valueA > valueB) comparison = 1
+    if (priceStore.sortDirection === 'desc') comparison *= -1
+
+    return comparison
+  })
+})
+
+const sortTable = (criteria) => {
+  priceStore.sortData(criteria)
+}
+
+const formatDateTime = (datetime) => {
+  if (!datetime) return ''
+  const date = new Date(datetime)
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+}
+
+const formatPrice = (value) => {
+  if (value === null || value === undefined) return ''
+  return Number(value).toFixed(2)
+}
+
+const getMoveClass = (value) => {
+  if (value > 0) return 'text-green-400'
+  if (value < 0) return 'text-red-400'
+  return 'text-slate-300'
+}
 </script>
 
 <style scoped>
