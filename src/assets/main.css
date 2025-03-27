@@ -48,11 +48,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary-400 hover:bg-primary-600 transition-colors text-primary-50;
+    @apply bg-primary-400 hover:bg-primary-600 transition-colors text-primary-50 hover:cursor-pointer;
   }
 
   .btn-secondary {
-    @apply border border-secondary-400 hover:bg-secondary-100 transition-colors text-secondary-600;
+    @apply border border-secondary-400 hover:bg-secondary-100 transition-colors text-secondary-600 hover:cursor-pointer;
   }
 
   .input {
