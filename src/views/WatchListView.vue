@@ -23,7 +23,7 @@
 
       <!-- Loading State -->
       <div v-if="loading" class="flex justify-center py-12">
-        <Loader />
+        <Loader/>
       </div>
 
       <!-- Error State -->
